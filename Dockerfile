@@ -1,4 +1,4 @@
-FROM alpine:3.17
+FROM alpine:3.18
 
 # This hack is widely applied to avoid python printing issues in docker containers.
 # See: https://github.com/Docker-Hub-frolvlad/docker-alpine-python3/pull/13
@@ -10,6 +10,6 @@ RUN echo "**** install PyPy ****" && \
     \
     echo "**** install pip ****" && \
     python -m ensurepip && \
-    rm -r /usr/lib/pypy/lib-python/3/ensurepip && \
-    if [ ! -e /usr/bin/pip ]; then ln -s /usr/lib/pypy/bin/pip3 /usr/bin/pip ; fi && \
+    rm -r /usr/lib/pypy3.10/ensurepip && \
+    if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     pip install --no-cache --upgrade pip setuptools wheel
